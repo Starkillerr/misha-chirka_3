@@ -1,0 +1,95 @@
+/* Секция отзывов */
+.reviews_section {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+}
+
+/* Форма добавления отзыва */
+.add_review {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.add_review input,
+.add_review textarea {
+  width: 300px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.add_review textarea {
+  min-height: 60px;
+}
+
+.add_review button {
+  padding: 0.5rem 1rem;
+  background-color: #04506e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.add_review button:hover {
+  background-color: #05678e;
+}
+
+/* Список отзывов */
+.reviews_list {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+}
+
+/* Каждый отзыв */
+.review_item {
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  width: 300px;
+  text-align: center;
+}
+
+.review_item strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: black;
+  border-bottom: 1px solid black;
+  padding-bottom: 2px;
+  border-radius: 2px;
+}
+
+.review_item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.page-footer {
+  display: flex;
+  flex-direction: column; /* кнопки сверху, контент под ними */
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.tab_content {
+  display: flex;
+  flex-direction: column; /* чтобы отзывы шли вертикально */
+  gap: 1rem;
+}
+
+.button_container{
+    justify-content:center ;
+}

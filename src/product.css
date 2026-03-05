@@ -1,0 +1,29 @@
+.product-image{
+     width: 250px;
+    height: 250px;
+     background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.product-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.product-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+.product-image{
+    width: 200px;
+    height: 200px;
+}
+
+}
