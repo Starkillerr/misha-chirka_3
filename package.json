@@ -5,6 +5,7 @@
   "type": "module",
   "homepage": "https://USERNAME.github.io/misha-chirka_3",
   "scripts": {
+    "homepage": "https://Starkillerr.github.io/misha-chirka_3/",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
