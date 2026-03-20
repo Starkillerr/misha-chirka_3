@@ -1,0 +1,36 @@
+"filename", "language", "JavaScript", "PostCSS", "JavaScript JSX", "XML", "JSON", "Markdown", "HTML", "comment", "blank", "total"
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\README.md", "Markdown", 0, 0, 0, 0, 0, 9, 0, 0, 8, 17
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\index.html", "HTML", 0, 0, 0, 0, 0, 0, 13, 0, 1, 14
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\package-lock.json", "JSON", 0, 0, 0, 0, 4693, 0, 0, 0, 1, 4694
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\package.json", "JSON", 0, 0, 0, 0, 47, 0, 0, 0, 1, 48
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\public\vite.svg", "XML", 0, 0, 0, 1, 0, 0, 0, 0, 0, 1
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\App.jsx", "JavaScript JSX", 0, 0, 19, 0, 0, 0, 0, 0, 3, 22
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\assets\react.svg", "XML", 0, 0, 0, 1, 0, 0, 0, 0, 0, 1
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\card-page.css", "PostCSS", 0, 130, 0, 0, 0, 0, 0, 0, 23, 153
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\cart.css", "PostCSS", 0, 50, 0, 0, 0, 0, 0, 1, 10, 61
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\CartPopup.jsx", "JavaScript JSX", 0, 0, 54, 0, 0, 0, 0, 0, 7, 61
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\Footer.jsx", "JavaScript JSX", 0, 0, 10, 0, 0, 0, 0, 0, 0, 10
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\Header.jsx", "JavaScript JSX", 0, 0, 167, 0, 0, 0, 0, 0, 16, 183
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\Menu.jsx", "JavaScript JSX", 0, 0, 28, 0, 0, 0, 0, 0, 9, 37
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\PriceSlider.jsx", "JavaScript JSX", 0, 0, 43, 0, 0, 0, 0, 0, 7, 50
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\ProductCard.jsx", "JavaScript JSX", 0, 0, 32, 0, 0, 0, 0, 0, 4, 36
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\ProductCardSkeleton.jsx", "JavaScript JSX", 0, 0, 27, 0, 0, 0, 0, 0, 4, 31
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\Search.jsx", "JavaScript JSX", 0, 0, 22, 0, 0, 0, 0, 0, 3, 25
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\eslint.config.js", "JavaScript", 28, 0, 0, 0, 0, 0, 0, 0, 2, 30
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\fetchproducts.js", "JavaScript", 17, 0, 0, 0, 0, 0, 0, 1, 9, 27
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\main.jsx", "JavaScript JSX", 0, 0, 17, 0, 0, 0, 0, 1, 1, 19
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\pages\Home.jsx", "JavaScript JSX", 0, 0, 92, 0, 0, 0, 0, 3, 11, 106
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\pages\ProductPage.jsx", "JavaScript JSX", 0, 0, 155, 0, 0, 0, 0, 2, 21, 178
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\pages\ProductPageSkeleton.jsx", "JavaScript JSX", 0, 0, 31, 0, 0, 0, 0, 7, 9, 47
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\pages\Services.jsx", "JavaScript JSX", 0, 0, 41, 0, 0, 0, 0, 0, 10, 51
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\paginate.css", "PostCSS", 0, 22, 0, 0, 0, 0, 0, 0, 3, 25
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\product.css", "PostCSS", 0, 25, 0, 0, 0, 0, 0, 0, 5, 30
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\reviews.css", "PostCSS", 0, 79, 0, 0, 0, 0, 0, 4, 12, 95
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\reviews.js", "JavaScript", 27, 0, 0, 0, 0, 0, 0, 2, 46, 75
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\services.css", "PostCSS", 0, 61, 0, 0, 0, 0, 0, 1, 6, 68
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\site-catalog.css", "PostCSS", 0, 659, 0, 0, 0, 0, 0, 16, 116, 791
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\site-index.css", "PostCSS", 0, 348, 0, 0, 0, 0, 0, 0, 68, 416
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\stores\cartStore.js", "JavaScript", 45, 0, 0, 0, 0, 0, 0, 0, 5, 50
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\supabaseClient.js", "JavaScript", 5, 0, 0, 0, 0, 0, 0, 0, 5, 10
+"c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\vite.config.js", "JavaScript", 5, 0, 0, 0, 0, 0, 0, 1, 2, 8
+"Total", "-", 127, 1374, 738, 2, 4740, 9, 13, 39, 428, 7470

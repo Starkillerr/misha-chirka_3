@@ -52,3 +52,9 @@
     background-color: aqua  ;
 }
 
+.item-name{
+    font-size: medium;
+    background-color: rgb(248, 245, 245);
+    border-radius: 5px;
+    margin: 2px 2px;
+}

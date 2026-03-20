@@ -10,6 +10,7 @@ import './services.css'
 import './cart.css'
 import './paginate.css'
 import'./reviews.css'
+import'./checkout.css'
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

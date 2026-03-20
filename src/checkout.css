@@ -1,0 +1,30 @@
+.checkout_button{
+    background-color:#545be8 ;
+}
+.checkout_button:hover{
+    background-color: aqua ;
+}
+
+.react-tel-input .form-control {
+  width: 100%;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: border 0.2s;
+}
+
+.react-tel-input .form-control:focus {
+  border-color: #545be8 ;
+  box-shadow: 0 0 0 2px rgba(119, 104, 215, 0.1);
+}
+
+.react-tel-input .flag-dropdown {
+  border-radius: 8px 0 0 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.react-tel-input .country-list {
+  border-radius: 8px;
+}

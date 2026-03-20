@@ -173,6 +173,8 @@ main {
   margin: 0;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   z-index: 1000;
+  overflow-wrap: break-word; 
+  word-break: break-word;
 }
 
 .search-dropdown li {
@@ -602,7 +604,11 @@ outline: none;
     visibility: hidden;
 }
 
-
+.search-dropdown li {
+        overflow: hidden;           
+    text-overflow: ellipsis;
+    font-size: small;
+}
 .header__center{
 display: none;}
 

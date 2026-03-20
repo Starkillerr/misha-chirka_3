@@ -4,6 +4,7 @@ import { fetchProducts } from "../fetchproducts";
 import { Footer } from "../components/Footer";
 import ReactPaginate from "react-paginate";
 import PriceSlider from "../components/PriceSlider";
+import ProductCardSkeleton from "../components/ProductCardSkeleton";
 
 export default function Home({ search }) {
   const [filterType, setFilterType] = useState("");
@@ -12,21 +13,24 @@ export default function Home({ search }) {
   const [maxPrice, setMaxPrice] = useState(500000);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const productsPerPage = 18;
 
   const loadProducts = async () => {
-    const { data, count } = await fetchProducts({
-      page: currentPage + 1,
-      limit: productsPerPage,
-      category: filterType || undefined,
-      minPrice,
-      maxPrice,
-      search: search || undefined,
-    });
-    setProducts(data);
-    setTotalCount(count);
-  };
+  setLoading(true);  // начинаем загрузку
+  const { data, count } = await fetchProducts({
+    page: currentPage + 1,
+    limit: productsPerPage,
+    category: filterType || undefined,
+    minPrice,
+    maxPrice,
+    search: search || undefined,
+  });
+  setProducts(data);
+  setTotalCount(count);
+  setLoading(false); // загрузка закончена
+};
 
   useEffect(() => {
     loadProducts();
@@ -62,20 +66,25 @@ export default function Home({ search }) {
         </div>
 
         <div id="catalog" className="catalog-grid-container">
-          {products.length > 0 ? (
-            products.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                title={product.name}
-                price={product.price}
-                image={product.image_url}
-              />
-            ))
-          ) : (
-            <p className="no-results">Нічого не знайдено</p>
-          )}
-        </div>
+  {loading ? (
+    // Пока грузим – показываем скелетоны
+    Array.from({ length: 6 }).map((_, i) => <ProductCardSkeleton key={i} />)
+  ) : products.length > 0 ? (
+    // После загрузки – реальные карточки
+    products.map((product) => (
+      <ProductCard
+        key={product.id}
+        id={product.id}
+        title={product.name}
+        price={product.price}
+        image={product.image_url}
+      />
+    ))
+  ) : (
+    // Если данных нет – сообщение
+    <p className="no-results">Нічого не знайдено</p>
+  )}
+</div>
 
         {pageCount > 1 && (
           <ReactPaginate

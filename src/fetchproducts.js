@@ -20,5 +20,7 @@ export async function fetchProducts({ page = 1, limit = 20, category, minPrice, 
     return { data: [], count: 0 };
   }
 
-  return { data, count };
+  const shuffled = [...data].sort(() => Math.random() - 0.5);
+
+  return { data: shuffled, count };
 }

@@ -4,6 +4,7 @@ import { supabase } from "../supabaseClient";
 import { Footer } from "../components/Footer";
 import { useCartStore } from "../stores/cartStore";
 import { fetchReviews, addReview} from "../reviews"; 
+import ProductPageSkeleton from "./ProductPageSkeleton";
 export default function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -77,7 +78,7 @@ export default function ProductPage() {
     }
   };
 
-  if (loading) return <h2>Загрузка...</h2>;
+  if (loading) return  <ProductPageSkeleton/>;
   if (!product) return <h2>Товар не знайдено</h2>;
 
   return (

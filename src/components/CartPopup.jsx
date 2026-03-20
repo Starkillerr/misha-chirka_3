@@ -1,9 +1,12 @@
 import { useCartStore } from "../stores/cartStore";
+  import { useNavigate } from "react-router-dom";
 
-export default function CartPopup({ open, close }) {
+
+export default function CartPopup( { open, close, openCheckout } ) {
   const items = useCartStore((state) => state.items);
   const removeItem = useCartStore((state) => state.removeItem);
   const updateQty = useCartStore((state) => state.updateQty);
+const navigate = useNavigate();
 
   if (!open) return null;
 
@@ -33,9 +36,9 @@ export default function CartPopup({ open, close }) {
             <div className="cart-items">
               {items.map((item) => (
                 <div key={item.id} className="cart-item" style={{ display: "flex", alignItems: "center", marginBottom: 10 }}>
-                  <img src={item.image} alt={item.name} style={{ width: 50, height: 50, marginRight: 10 }} />
+                  <img  src={item.image} alt={item.title} style={{ width: 50, height: 50, marginRight: 10 }} />
                   <div style={{ flex: 1 }}>
-                    <p className="item-name">{item.name}</p>
+                    <p className="item-name">{item.title}</p>
                     <p className="item-price">{item.price} грн</p>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <button className="plus-minus" onClick={() => updateQty(item.id, item.qty > 1 ? item.qty - 1 : 1)}>-</button>
@@ -52,7 +55,9 @@ export default function CartPopup({ open, close }) {
               <p>Товарів: {totalItems}</p>
               <p>Сума: {totalAmount} грн</p>
             </div>
-            <button className="cart-order">Перейти до оформлення</button>
+            <button className="cart-order" onClick={openCheckout}>
+  Перейти до оформлення
+</button>
           </>
         )}
       </div>

@@ -4,10 +4,12 @@ import Menu from "./Menu";
 import CartPopup from "./CartPopup";
 import { supabase } from "../supabaseClient";
 import { useCartStore } from "../stores/cartStore";
+import CheckoutPage from "./CheckoutPage";
 
 export default function Header({ search, setSearch }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [inputValue, setInputValue] = useState(search || "");
   const [focused, setFocused] = useState(false);
   const [products, setProducts] = useState([]);
@@ -15,7 +17,6 @@ export default function Header({ search, setSearch }) {
 
   const navigate = useNavigate();
 
-  // Fetch продуктов прямо в Header
   useEffect(() => {
     async function fetchProducts() {
       const { data, error } = await supabase.from("products").select("*");
@@ -28,7 +29,6 @@ export default function Header({ search, setSearch }) {
     fetchProducts();
   }, []);
 
-  // Фильтр для live dropdown (максимум 3 совпадения)
   const filteredProducts = products
     .filter((p) => p.name?.toLowerCase().includes(inputValue.toLowerCase()))
     .slice(0, 3);
@@ -179,7 +179,18 @@ export default function Header({ search, setSearch }) {
       </header>
 
       <Menu open={menuOpen} close={() => setMenuOpen(false)} />
-      <CartPopup open={cartOpen} close={() => setCartOpen(false)} />
+      <CartPopup
+  open={cartOpen}
+  close={() => setCartOpen(false)}
+  openCheckout={() => {
+    setCartOpen(false);
+    setCheckoutOpen(true);
+  }}
+/>
+<CheckoutPage
+  open={checkoutOpen}
+  close={() => setCheckoutOpen(false)}
+/>
     </>
   );
 }

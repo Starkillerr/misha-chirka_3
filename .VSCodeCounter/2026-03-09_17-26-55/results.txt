@@ -1,0 +1,72 @@
+Date : 2026-03-09 17:26:55
+Directory : c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react
+Total : 34 files,  7003 codes, 39 comments, 428 blanks, all 7470 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JSON           |          2 |      4,740 |          0 |          2 |      4,742 |
+| PostCSS        |          8 |      1,374 |         22 |        243 |      1,639 |
+| JavaScript JSX |         14 |        738 |         13 |        105 |        856 |
+| JavaScript     |          6 |        127 |          4 |         69 |        200 |
+| HTML           |          1 |         13 |          0 |          1 |         14 |
+| Markdown       |          1 |          9 |          0 |          8 |         17 |
+| XML            |          2 |          2 |          0 |          0 |          2 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                         | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                            |         34 |      7,003 |         39 |        428 |      7,470 |
+| . (Files)                                                                                                    |          5 |      4,767 |          1 |         13 |      4,781 |
+| public                                                                                                       |          1 |          1 |          0 |          0 |          1 |
+| src                                                                                                          |         28 |      2,235 |         38 |        415 |      2,688 |
+| src (Files)                                                                                                  |         14 |      1,487 |         26 |        309 |      1,822 |
+| src\assets                                                                                                   |          1 |          1 |          0 |          0 |          1 |
+| src\components                                                                                               |          8 |        383 |          0 |         50 |        433 |
+| src\pages                                                                                                    |          4 |        319 |         12 |         51 |        382 |
+| src\stores                                                                                                   |          1 |         45 |          0 |          5 |         50 |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                     | language       | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\README.md                              | Markdown       |          9 |          0 |          8 |         17 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\index.html                             | HTML           |         13 |          0 |          1 |         14 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\package-lock.json                      | JSON           |      4,693 |          0 |          1 |      4,694 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\package.json                           | JSON           |         47 |          0 |          1 |         48 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\public\vite.svg                        | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\App.jsx                            | JavaScript JSX |         19 |          0 |          3 |         22 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\assets\react.svg                   | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\card-page.css                      | PostCSS        |        130 |          0 |         23 |        153 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\cart.css                           | PostCSS        |         50 |          1 |         10 |         61 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\CartPopup.jsx           | JavaScript JSX |         54 |          0 |          7 |         61 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\Footer.jsx              | JavaScript JSX |         10 |          0 |          0 |         10 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\Header.jsx              | JavaScript JSX |        167 |          0 |         16 |        183 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\Menu.jsx                | JavaScript JSX |         28 |          0 |          9 |         37 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\PriceSlider.jsx         | JavaScript JSX |         43 |          0 |          7 |         50 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\ProductCard.jsx         | JavaScript JSX |         32 |          0 |          4 |         36 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\ProductCardSkeleton.jsx | JavaScript JSX |         27 |          0 |          4 |         31 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\components\Search.jsx              | JavaScript JSX |         22 |          0 |          3 |         25 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\eslint.config.js                   | JavaScript     |         28 |          0 |          2 |         30 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\fetchproducts.js                   | JavaScript     |         17 |          1 |          9 |         27 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\main.jsx                           | JavaScript JSX |         17 |          1 |          1 |         19 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\pages\Home.jsx                     | JavaScript JSX |         92 |          3 |         11 |        106 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\pages\ProductPage.jsx              | JavaScript JSX |        155 |          2 |         21 |        178 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\pages\ProductPageSkeleton.jsx      | JavaScript JSX |         31 |          7 |          9 |         47 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\pages\Services.jsx                 | JavaScript JSX |         41 |          0 |         10 |         51 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\paginate.css                       | PostCSS        |         22 |          0 |          3 |         25 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\product.css                        | PostCSS        |         25 |          0 |          5 |         30 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\reviews.css                        | PostCSS        |         79 |          4 |         12 |         95 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\reviews.js                         | JavaScript     |         27 |          2 |         46 |         75 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\services.css                       | PostCSS        |         61 |          1 |          6 |         68 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\site-catalog.css                   | PostCSS        |        659 |         16 |        116 |        791 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\site-index.css                     | PostCSS        |        348 |          0 |         68 |        416 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\stores\cartStore.js                | JavaScript     |         45 |          0 |          5 |         50 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\src\supabaseClient.js                  | JavaScript     |          5 |          0 |          5 |         10 |
+| c:\Users\Алексаша\projects\misha_business-project-2026\sun-core-react\vite.config.js                         | JavaScript     |          5 |          1 |          2 |          8 |
+| Total                                                                                                        |                |      7,003 |         39 |        428 |      7,470 |
++--------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

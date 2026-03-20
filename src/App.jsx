@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import ProductPage from "./pages/ProductPage";
 import { useState } from "react";
 import { Services } from "./pages/Services";
+import CheckoutPage from './components/CheckoutPage'
 
 export default function App() {
  const [search, setSearch] = useState('');
@@ -15,6 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home search={search} />} />
         <Route path="/product/:id" element={<ProductPage />} />
+         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/Services" element={<Services/>}/>
       </Routes>
     </>
