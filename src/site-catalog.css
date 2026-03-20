@@ -19,7 +19,7 @@ main {
 }
 
 .main_pic{
-    background-image: url(../public/imgs/logo_big-removebg-preview.png);
+    background-image: url('/public/imgs/logo_big-removebg-preview.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -87,7 +87,7 @@ main {
      display: inline-block;     
   width: 40px;             
   height: 40px;               
-  background-image: url("./imgs/Icon-Burger-menu.png");
+  background-image: url("/imgs/Icon-Burger-menu.png");
   background-size: contain;  
   background-repeat: no-repeat;
   background-position: center;
@@ -114,7 +114,7 @@ main {
       display: inline-block;     
   width: 40px;             
   height: 40px;               
-  background-image: url("./imgs/shopcart1-removebg-preview.png");
+  background-image: url("/imgs/shopcart1-removebg-preview.png");
   background-size: contain;  
   background-repeat: no-repeat;
   background-position: center;
@@ -411,7 +411,7 @@ outline: none;
 }
 
   .icon--close {
-    background-image: url("./imgs/Icon-Close.png");
+    background-image: url("/imgs/Icon-Close.png");
     height: 24px;
     width: 24px;
     cursor: pointer;

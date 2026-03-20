@@ -56,7 +56,7 @@ export default function Header({ search, setSearch }) {
 
           <div className="phone">
             <a className="phone-logo" href="tel:+380687777777">
-              <img src="/imgs/Icon-Phone-call.png" alt="call" />
+              <img src={`${import.meta.env.BASE_URL}imgs/Icon-Phone-call.png`} alt="call" />
             </a>
             <a href="tel:+380687777777" className="icon-phone">
               <p className="icon-phone__text">+380 68 777 7777</p>

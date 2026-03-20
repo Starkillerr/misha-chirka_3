@@ -11,7 +11,7 @@ export default function Menu({ open, close }) {
         <div className="top-bar menu__top">
 
           <a href="#" className="page-img">
-            <img src="/imgs/app_logo.png" alt="Sun Core"/>
+            <img src={`${import.meta.env.BASE_URL}/imgs/app_logo.png`} alt="Sun Core"/>
           </a>
 
           <div className="menu__icons">
