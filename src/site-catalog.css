@@ -19,7 +19,7 @@ main {
 }
 
 .main_pic{
-    background-image: url('/public/imgs/logo_big-removebg-preview.png');
+    background-image: url('/imgs/logo_big-removebg-preview.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
