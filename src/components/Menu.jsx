@@ -13,8 +13,8 @@ export default function Menu({ open, close }) {
       <aside className={`menu page__menu ${open ? "active" : ""}`}>
         <div className="top-bar menu__top">
 
-          <a href="#" className="page-img">
-          </a>
+          <Link to="/Home" className="page-img">
+          </Link>
 
           <div className="menu__icons">
             <a className="icon icon--close" onClick={close}></a>
@@ -27,7 +27,7 @@ export default function Menu({ open, close }) {
           <nav className="nav menu__nav">
             <ul className="nav__list">
               <li className="nav__item"><Link className="card__name" to="/Services">ПОСЛУГИ</Link></li>
-              <li className="nav__item"><Link className="card__name" to="/#catalog">ОБЛАДНАННЯ І МАТЕРІАЛИ</Link></li>
+              <li className="nav__item"><Link className="card__name" to="/Home">ОБЛАДНАННЯ І МАТЕРІАЛИ</Link></li>
               {/* <li className="nav__item"><Link className="card__name" to="#">ВИКЛИК СПЕЦІАЛІСТА</Link></li> */}
             </ul>
           </nav>
