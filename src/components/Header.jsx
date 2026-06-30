@@ -53,7 +53,7 @@ export default function Header({ search, setSearch }) {
       <header className="header">
         <div className="header__left">
           <div className="page-logo">
-            <a className="page-img" href="/"></a>
+            <a className="page-img" href="#"></a>
           </div>
 
           <div className="phone">
