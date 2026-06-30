@@ -14,7 +14,7 @@ export default function App() {
       <Header search={search} setSearch={setSearch}  />
 
       <Routes>
-        <Route path="/Home" element={<Home search={search} />} />
+        <Route path="/" element={<Home search={search} />} />
         <Route path="/product/:id" element={<ProductPage />} />
          <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/Services" element={<Services/>}/>

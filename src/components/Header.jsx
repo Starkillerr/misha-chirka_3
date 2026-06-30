@@ -53,7 +53,7 @@ export default function Header({ search, setSearch }) {
       <header className="header">
         <div className="header__left">
           <div className="page-logo">
-            <Link className="page-img" to="/Home" ></Link>
+            <Link className="page-img" to="/" ></Link>
           </div>
 
           <div className="phone">
@@ -70,7 +70,7 @@ export default function Header({ search, setSearch }) {
           <Link className="card__name" to="/services">
             ПОСЛУГИ
           </Link>
-          <Link className="card__name" to="/Home">
+          <Link className="card__name" to="/">
             ОБЛАДНАННЯ І МАТЕРІАЛИ
           </Link>
           
