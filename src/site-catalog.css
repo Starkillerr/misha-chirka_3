@@ -24,16 +24,24 @@ main {
   flex: 1;
 }
 
-.main_pic{
+.main_pic {
     background-image: url('../public/imgs/logo_big-removebg-preview.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    
+    /* Чітко задаємо розміри та забороняємо флексу їх стискати */
     width: 200px;
     height: 200px;
+    flex-shrink: 0; 
+
+    /* Вирівнювання по центру замість justify-self */
+    margin: 0 auto; 
+    
+    /* Якщо цей блок є флекс-контейнером для чогось всередині */
     display: flex;
-    justify-self: center;
-    /* background-color: #fff; */
+    justify-content: center;
+    align-items: center;
 }
 
 .main_text{
