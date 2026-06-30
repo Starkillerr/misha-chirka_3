@@ -5,6 +5,7 @@ import { faMobile } from '@fortawesome/free-solid-svg-icons';
 import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { faTelegram } from "@fortawesome/free-brands-svg-icons";
 import { faViber } from "@fortawesome/free-brands-svg-icons";
+import { faSolarPanel } from '@fortawesome/free-solid-svg-icons';
 import { Footer } from '../components/Footer';
 
 export const Services = () => {
@@ -39,7 +40,12 @@ return (
 
     <div className="projecting_img"></div>
     <div className="projecting_info">
-       
+       <ul className="list">
+<li><FontAwesomeIcon icon={faSolarPanel} /> Проектування пiд вас
+</li>
+
+
+        </ul>
     </div>
 </div>
 

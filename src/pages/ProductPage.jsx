@@ -98,7 +98,7 @@ export default function ProductPage() {
               {!expanded && isLongText && "... "}
               {isLongText && (
                 <span className="expand_button" onClick={() => setExpanded(!expanded)}>
-                  {expanded ? "Згорнути" : "Розгорнути"}
+                  {expanded ? " Згорнути" : "Розгорнути"}
                 </span>
               )}
             </p>
@@ -165,10 +165,12 @@ export default function ProductPage() {
     )}
 
     {activeTab === "stats" && (
-      <div className="stats_section">
-        <p>Характеристики поки недоступні</p>
-      </div>
-    )}
+  <div className="stats_section">
+    <p className="characteristics">
+      {product.characteristic_template}
+    </p>
+  </div>
+)}
   </div>
 </footer>
 

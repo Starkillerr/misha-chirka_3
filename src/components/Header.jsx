@@ -36,6 +36,8 @@ export default function Header({ search, setSearch }) {
   const triggerSearch = () => {
     setSearch(inputValue); // обновляем search на Home
     navigate(`/?q=${encodeURIComponent(inputValue)}`);
+    setInputValue("");
+
   };
 
   const handleKeyDown = (e) => {
@@ -71,9 +73,7 @@ export default function Header({ search, setSearch }) {
           <Link className="card__name" to="/#catalog">
             ОБЛАДНАННЯ І МАТЕРІАЛИ
           </Link>
-          <Link className="card__name" to="/">
-            ВИКЛИК СПЕЦІАЛІСТА
-          </Link>
+          
         </div>
 
         <div className="header__right">

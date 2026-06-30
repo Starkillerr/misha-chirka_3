@@ -9,6 +9,7 @@ export default function Search({ setSearch }) {
     if (e.key === "Enter") {
       setSearch(inputValue); // обновляем search в App/Home
       navigate(`/?q=${encodeURIComponent(inputValue)}`);
+      setInputValue("");
     }
   };
 

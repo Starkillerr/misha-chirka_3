@@ -1,4 +1,9 @@
 
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 body {
     margin: 0;
 padding: 0;
@@ -7,6 +12,7 @@ position: relative;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+  scroll-behavior: smooth;
 
 }
 .app-wrapper {
@@ -330,9 +336,13 @@ outline: none;
 
 .menu {
    position: fixed;
+   border: 3px solid #3b3f6d;
+   border-bottom: transparent;
+   border-right: transparent;
+   border-radius: 4px;
   top: 0;
   right: 0;
-  width: 20%;
+  width: 21%;
   height: 100%;
   background-color: #565656;
 
@@ -654,7 +664,7 @@ display: none;}
   }
 
   .menu {
-    width: 50%;
+    width: 55%;
   }
 
   .footer {
@@ -788,4 +798,14 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]::-moz-range-progress {
   background: #04506e;
   height: 6px;
+}
+
+.characteristics {
+  padding: 10px;
+  color: rgb(33, 32, 32);
+    white-space: pre-line;
+        background-color: #f9f2f2fe;
+  font-weight: bold;
+
+    
 }
