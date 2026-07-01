@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
 import dotenv from "dotenv"; 
+import { supabase } from "../src/supabaseClient.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,41 +19,101 @@ app.use(cors({origin: "http://localhost:5173"}));
 const PORT = process.env.PORT || 4000;
 const NP_URL = "https://api.novaposhta.ua/v2.0/json/";
 
-// --- LIQPAY: Создание данных для оплаты ---
-app.post("/api/create-payment", (req, res) => {
-    const { amount, order_id } = req.body;
-    const public_key = process.env.LIQPAY_PUBLIC_KEY;
-    const private_key = process.env.LIQPAY_PRIVATE_KEY;
+// --- СОЗДАНИЕ ЗАКАЗА (БЕЗ ОНЛАЙН ОПЛАТЫ) ---
+app.post("/api/orders", async (req, res) => {
+    const { firstName, lastName, middleName, phone, address, total, items } = req.body;
 
-    if (!amount || !order_id) {
-        return res.status(400).json({ error: "Missing amount or order_id" });
+    if (!firstName || !lastName || !phone || !items || items.length === 0) {
+        return res.status(400).json({ error: "Не всі обов'язкові поля заповнені" });
     }
 
-    const jsonString = JSON.stringify({
-        version: "3",
-        public_key,
-        action: "pay",
-        amount,
-        currency: "UAH",
-        description: `Замовлення #${order_id}`,
-        order_id,
-        sandbox: 1 // Убери это поле перед выходом в продакшн
-    });
+    try {
+        const fullName = `${lastName} ${firstName} ${middleName}`.trim();
+        const cleanedPhone = phone.replace(/\D/g, "");
 
-    const data = Buffer.from(jsonString).toString("base64");
-    
-    // ИСПРАВЛЕНО: Правильный алгоритм подписи для LiqPay
-    const signature = crypto
-        .createHash("sha1")
-        .update(private_key + data + private_key)
-        .digest("base64");
+        // 1. Вставляем сам заказ в таблицу `orders`
+        const { data: orderData, error: orderError } = await supabase
+            .from("orders")
+            .insert([{
+                full_name: fullName,
+                phone: cleanedPhone,
+                adress: address,
+                total: total,
+                status: "Новий"
+            }])
+            .select()
+            .single();
 
-    res.json({ data, signature });
+        if (orderError) throw orderError;
+        const orderId = orderData.id;
+
+        // 2. Формируем массив товаров для вставки в `order_items`
+        const orderItemsFields = items.map(item => ({
+            order_id: orderId,
+            product_id: item.id,
+            title: item.name || item.title,
+            price: item.price,
+            qty: item.qty
+        }));
+
+        // 3. Массовая вставка товаров
+        const { error: itemsError } = await supabase
+            .from("order_items")
+            .insert(orderItemsFields);
+
+        if (itemsError) throw itemsError;
+
+        // --- 🚀 ОТПРАВКА УВЕДОМЛЕНИЯ В ТЕЛЕГРАМ ---
+        try {
+            const botToken = process.env.TELEGRAM_BOT_TOKEN;
+            const chatId = process.env.TELEGRAM_CHAT_ID;
+
+            // Красиво форматируем список товаров
+            const itemsList = items.map(item => `📦 *${item.name || item.title}* — ${item.qty} шт. x ${item.price} грн`).join("\n");
+
+            // Текст сообщения (используем Markdown для жирного шрифта)
+            const telegramMessage = 
+`🔔 *Нове замовлення!*
+
+🆔 *ID замовлення:* \`${orderId}\`
+👤 *Покупець:* ${fullName}
+📞 *Телефон:* +${cleanedPhone}
+📍 *Адреса доставки:* ${address}
+
+🛒 *Товари:*
+${itemsList}
+
+💰 *Всього до сплати:* *${total} грн*`;
+
+            // Шлем запрос на API Телеграма
+            await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: telegramMessage,
+                    parse_mode: "Markdown" // Чтобы работал жирный шрифт и код
+                })
+            });
+            
+            console.log("Уведомление в Telegram успешно отправлено!");
+        } catch (tgErr) {
+            // Обернули в отдельный try-catch, чтобы если упадет ТГ, заказ в базе всё равно остался валидным
+            console.error("Ошибка отправки в Telegram:", tgErr.message);
+        }
+        // ------------------------------------------
+
+        res.json({ success: true, orderId, message: "Замовлення успішно створено!" });
+
+    } catch (err) {
+        console.error("Ошибка сохранения заказа:", err.message);
+        res.status(500).json({ error: err.message });
+    }
 });
 
-// --- NOVA POSHTA: Поиск города (теперь с фильтром) ---
+// --- NOVA POSHTA: Поиск города ---
 app.get("/api/np-cities", async (req, res) => {
-    const cityName = req.query.name || ""; // Берем из ?name=Одеса
+    const cityName = req.query.name || ""; 
     
     try {
         const response = await fetch(NP_URL, {
@@ -116,7 +177,7 @@ app.post("/api/np-cost", async (req, res) => {
                 modelName: "InternetDocument",
                 calledMethod: "getDocumentPrice",
                 methodProperties: {
-                    CitySender: process.env.NP_CITY_REF, // Тот самый Ref из Postman
+                    CitySender: process.env.NP_CITY_REF, 
                     CityRecipient: cityRef,
                     Weight: weight || 1,
                     Cost: cost || 100,

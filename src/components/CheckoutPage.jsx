@@ -14,17 +14,17 @@ export default function CheckoutPage({ open, close }) {
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [deliveryCost, setDeliveryCost] = useState(0);
- const [firstName, setFirstName] = useState("");
-const [lastName, setLastName] = useState("");
-const [middleName, setMiddleName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [middleName, setMiddleName] = useState("");
   const [phone, setPhone] = useState("");
+  const [paymentType, setPaymentType] = useState("Накладений платіж"); // Новый стейт для выбора оплаты
+
   const phoneRef = useRef(null);
   const middleNameRef = useRef(null);
   const lastNameRef = useRef(null);
 
   const API_BASE = "http://localhost:4000";
-
- 
 
   useEffect(() => {
     if (cityInput.length < 2) {
@@ -79,39 +79,46 @@ const [middleName, setMiddleName] = useState("");
     }
 
     try {
-      const order_id = `ORDER-${Date.now()}`;
-      const amount = totalAmount + deliveryCost;
+      const warehouseObj = warehouses.find(w => w.Ref === selectedWarehouse);
+      const fullAddress = `м. ${selectedCity.Description}, ${warehouseObj ? warehouseObj.Description : selectedWarehouse}`;
+      const finalAmount = totalAmount + deliveryCost;
 
-      const res = await fetch(`${API_BASE}/api/create-payment`, {
+      const res = await fetch(`${API_BASE}/api/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount, order_id })
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          middleName,
+          phone,
+          address: fullAddress,
+          total: finalAmount,
+          paymentType, // Передаем выбранный тип оплаты на бэкенд
+          items: items // Передаем товары из Zustand стора
+        })
       });
 
-      const { data, signature } = await res.json();
+      const result = await res.json();
 
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = "https://www.liqpay.ua/api/3/checkout";
-
-      const appendInput = (n, v) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = n;
-        input.value = v;
-        form.appendChild(input);
-      };
-
-      appendInput("data", data);
-      appendInput("signature", signature);
-
-      document.body.appendChild(form);
-      form.submit();
+      if (res.ok && result.success) {
+        alert(`Дякуємо! Замовлення №${result.orderId} успішно оформлено.`);
+        
+        // Очищаем локальное хранилище и напрямую обнуляем массив в Zustand
+        localStorage.removeItem("cart");
+        useCartStore.setState({ items: [] });
+        
+        close(); // Закрываем модальное окно заказа
+      } else {
+        alert(`Помилка: ${result.error || "Не вдалося зберегти замовлення"}`);
+      }
     } catch (err) {
-      alert("Помилка при з'єднанні з сервером оплати");
+      console.error(err);
+      alert("Помилка при з'єднанні з сервером замовлень");
     }
   };
- if (!open) return null;
+
+  if (!open) return null;
+
   return (
     <div className="cart-popup" style={{ display: "flex" }} onClick={close}>
       <div
@@ -166,22 +173,21 @@ const [middleName, setMiddleName] = useState("");
               style={{ padding: "10px" }}
             />
 
-          <PhoneInput
-  
-  country={"ua"}
-  onlyCountries={["ua"]}
-  enableSearch={true}
- placeholder="+380 XX XXX XX XX"
-  value={phone}
-  onChange={(phone) => setPhone("+" + phone)}
-   inputProps={{
-    ref: phoneRef,
-  }}
-  inputStyle={{
-    width: "100%",
-    height: "40px"
-  }}
-/>
+            <PhoneInput
+              country={"ua"}
+              onlyCountries={["ua"]}
+              enableSearch={true}
+              placeholder="+380 XX XXX XX XX"
+              value={phone}
+              onChange={(phone) => setPhone("+" + phone)}
+              inputProps={{
+                ref: phoneRef,
+              }}
+              inputStyle={{
+                width: "100%",
+                height: "40px"
+              }}
+            />
           </div>
 
           <div className="delivery-info" style={{ marginTop: "20px" }}>
@@ -248,6 +254,19 @@ const [middleName, setMiddleName] = useState("");
             )}
           </div>
 
+          {/* Блок выбора способа оплаты */}
+          <div className="payment-info" style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "5px" }}>
+            <label style={{ fontWeight: "bold", fontSize: "14px" }}>Спосіб оплати:</label>
+            <select
+              value={paymentType}
+              onChange={e => setPaymentType(e.target.value)}
+              style={{ width: "100%", padding: "10px" }}
+            >
+              <option value="Накладений платіж">Накладений платіж (при отриманні)</option>
+              <option value="Оплата на карту">Оплата на карту (реквізити надасть менеджер)</option>
+            </select>
+          </div>
+
           <div className="summary" style={{ marginTop: "20px", padding: "15px", background: "#f9f9f9", color: "#000" }}>
             <p>Товари: {totalAmount} грн</p>
             <p>Доставка: {deliveryCost} грн</p>
@@ -256,7 +275,7 @@ const [middleName, setMiddleName] = useState("");
           </div>
 
           <button
-          className="checkout_button"
+            className="checkout_button"
             onClick={handlePay}
             style={{
               width: "100%",
@@ -268,7 +287,7 @@ const [middleName, setMiddleName] = useState("");
               cursor: "pointer"
             }}
           >
-            ОПЛАТИТИ ТА ЗАМОВИТИ
+            ОФОРМИТИ ЗАМОВЛЕННЯ
           </button>
         </div>
       </div>
