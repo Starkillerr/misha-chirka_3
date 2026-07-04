@@ -6,14 +6,16 @@ import { fileURLToPath } from "url";
 import cors from "cors";
 import dotenv from "dotenv"; 
 import { supabase } from "../src/supabaseClient.js";
+import TelegramBot from "node-telegram-bot-api";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: path.join(__dirname, ".env") });
+const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
 
 const app = express();
-app.use(express.json()); // Стандартный парсер для JSON
+app.use(express.json()); 
 app.use(cors({origin: "http://localhost:5173"}));
 
 const PORT = process.env.PORT || 4000;
@@ -21,7 +23,7 @@ const NP_URL = "https://api.novaposhta.ua/v2.0/json/";
 
 // --- СОЗДАНИЕ ЗАКАЗА (БЕЗ ОНЛАЙН ОПЛАТЫ) ---
 app.post("/api/orders", async (req, res) => {
-    const { firstName, lastName, middleName, phone, address, total, items } = req.body;
+    const { firstName, lastName, middleName, phone, address, paymentType, total, items } = req.body;
 
     if (!firstName || !lastName || !phone || !items || items.length === 0) {
         return res.status(400).json({ error: "Не всі обов'язкові поля заповнені" });
@@ -39,7 +41,8 @@ app.post("/api/orders", async (req, res) => {
                 phone: cleanedPhone,
                 adress: address,
                 total: total,
-                status: "Новий"
+                status: "Новий",
+                payment_type: paymentType
             }])
             .select()
             .single();
@@ -65,49 +68,90 @@ app.post("/api/orders", async (req, res) => {
 
         // --- 🚀 ОТПРАВКА УВЕДОМЛЕНИЯ В ТЕЛЕГРАМ ---
         try {
-            const botToken = process.env.TELEGRAM_BOT_TOKEN;
             const chatId = process.env.TELEGRAM_CHAT_ID;
 
-            // Красиво форматируем список товаров
-            const itemsList = items.map(item => `📦 *${item.name || item.title}* — ${item.qty} шт. x ${item.price} грн`).join("\n");
+            const telegramMessage = `
+🔔 Нове замовлення!
 
-            // Текст сообщения (используем Markdown для жирного шрифта)
-            const telegramMessage = 
-`🔔 *Нове замовлення!*
+🆔 ID замовлення: ${orderId}
+👤 Покупець: ${fullName}
+📞 Телефон: +${cleanedPhone}
+📍 Адреса: ${address}
+💳 Спосіб оплати: ${paymentType || "Не вказано"}
+💰 Всього до сплати: ${total} грн
+`;
 
-🆔 *ID замовлення:* \`${orderId}\`
-👤 *Покупець:* ${fullName}
-📞 *Телефон:* +${cleanedPhone}
-📍 *Адреса доставки:* ${address}
-
-🛒 *Товари:*
-${itemsList}
-
-💰 *Всього до сплати:* *${total} грн*`;
-
-            // Шлем запрос на API Телеграма
-            await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: telegramMessage,
-                    parse_mode: "Markdown" // Чтобы работал жирный шрифт и код
-                })
+            // Отправляем сообщение и передаем inline-кнопки
+            await bot.sendMessage(chatId, telegramMessage, {
+                reply_markup: {
+                    inline_keyboard: [
+                        [
+        { text: "🟢 Оплачено", callback_data: `st_pay_${orderId}` },
+        { text: "🚚 Відправлено", callback_data: `st_deliv_${orderId}` }
+    ],
+    [
+        { text: "🔴 Скасовано", callback_data: `st_canc_${orderId}` },
+        { text: "🔄 Повернення", callback_data: `st_ret_${orderId}` }
+    ]
+                    ]
+                }
             });
             
-            console.log("Уведомление в Telegram успешно отправлено!");
+            console.log("Уведомление с кнопками отправлено в Telegram!");
         } catch (tgErr) {
-            // Обернули в отдельный try-catch, чтобы если упадет ТГ, заказ в базе всё равно остался валидным
             console.error("Ошибка отправки в Telegram:", tgErr.message);
         }
-        // ------------------------------------------
 
+        // Возвращаем успешный ответ фронтенду
         res.json({ success: true, orderId, message: "Замовлення успішно створено!" });
 
     } catch (err) {
         console.error("Ошибка сохранения заказа:", err.message);
         res.status(500).json({ error: err.message });
+    }
+});
+
+// --- ОБРАБОТКА НАЖАТИЙ НА КНОПКИ В ТГ ---
+bot.on("callback_query", async (callbackQuery) => {
+    const message = callbackQuery.message;
+    const data = callbackQuery.data;
+
+    if (data.startsWith("st_")) {
+        const [_, newStatus, orderId] = data.split("_");
+
+        try {
+            // 1. Обновляем статус в Supabase
+            const { error } = await supabase
+                .from("orders")
+                .update({ status: newStatus })
+                .eq("id", orderId);
+
+            if (error) throw error;
+
+            // 2. Всплывашка в Телеге
+            await bot.answerCallbackQuery(callbackQuery.id, {
+                text: `Статус змінено на "${newStatus}"`,
+                show_alert: false
+            });
+
+            // 3. Обновляем текст сообщения в ТГ-чате
+            const updatedText = message.text + `\n\n⚡️ [Статус змінено на: ${newStatus}]`;
+
+            await bot.editMessageText(updatedText, {
+                chat_id: message.chat.id,
+                message_id: message.message_id,
+                reply_markup: message.reply_markup
+            });
+
+            console.log(`Статус заказа ${orderId} изменен на: ${newStatus}`);
+
+        } catch (dbErr) {
+            console.error("Ошибка обновления статуса:", dbErr.message);
+            bot.answerCallbackQuery(callbackQuery.id, {
+                text: "Помилка при оновленні бази даних!",
+                show_alert: true
+            });
+        }
     }
 });
 

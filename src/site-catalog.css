@@ -620,6 +620,7 @@ outline: none;
 @media (max-width: 768px) {
 .icon-phone__text{
     visibility: hidden;
+    display: none;
 }
 
 .search-dropdown li {
@@ -628,7 +629,8 @@ outline: none;
     font-size: small;
 }
 .header__center{
-display: none;}
+display: none;
+}
 
  .header__center {
     /* flex-direction: column;  */
@@ -651,7 +653,7 @@ display: none;}
   }
 
   .search-input {
-    width: 90%;
+    width: 100%;
     max-width: 320px;
   }
 
