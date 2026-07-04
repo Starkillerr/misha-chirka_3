@@ -769,9 +769,11 @@ input[type="search"]::-ms-clear {
 }
 
 .slider-inputs{
+  display: flex;
     align-items: center;
-    justify-self: center;
+    justify-content: center;
     padding: 3px;
+    width: 100%;
 }
 .price-input{
   background-color:#04506e;
