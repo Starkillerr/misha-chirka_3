@@ -768,9 +768,14 @@ input[type="search"]::-ms-clear {
     align-items: center;
 }
 
-.slider-text{
+.slider-inputs{
     align-items: center;
     justify-self: center;
+    padding: 3px;
+}
+.price-input{
+  background-color:#04506e;
+  color: white;
 }
 
 input[type="range"] {
