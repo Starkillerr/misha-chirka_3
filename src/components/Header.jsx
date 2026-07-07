@@ -53,8 +53,17 @@ export default function Header({ search, setSearch }) {
       <header className="header">
         <div className="header__left">
           <div className="page-logo">
-            <Link className="page-img" to="/" ></Link>
-          </div>
+  <Link 
+    className="page-img" 
+    to="/" 
+    onClick={() => {
+      setInputValue(""); // Очищаем текст в инпуте хедера
+      setSearch("");     // Сбрасываем поиск на главной (стейт из пропсов)
+      // Если у тебя пагинация и фильтры завязаны на URL-параметры, 
+      // navigate("/") их автоматически сотрет.
+    }}
+  ></Link>
+</div>
 
           <div className="phone">
             <a className="phone-logo" href="tel:+380687777777">

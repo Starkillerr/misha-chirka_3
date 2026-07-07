@@ -6,6 +6,7 @@ import ReactPaginate from "react-paginate";
 import PriceSlider from "../components/PriceSlider";
 import ProductCardSkeleton from "../components/ProductCardSkeleton";
 
+
 export default function Home({ search }) {
   const [filterType, setFilterType] = useState("");
   const [products, setProducts] = useState([]);
