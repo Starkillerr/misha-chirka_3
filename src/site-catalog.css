@@ -451,7 +451,8 @@ outline: none;
 .footer {
   border-top: 5px solid #04506e;
   width: 100%;
-  height: 150px;
+  height: auto;
+  min-height: 150px;
     background-color: #565656;
 }
 
