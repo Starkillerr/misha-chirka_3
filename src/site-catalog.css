@@ -507,7 +507,7 @@ outline: none;
 }
 
     .cart_image{
-        background-image: url("./imgs/sad_emoji.png");
+        background-image: url("../public/imgs/sad_emoji.png");
     background-size: contain; 
     background-repeat: no-repeat;
     background-position: center;
