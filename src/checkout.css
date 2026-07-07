@@ -28,3 +28,7 @@
 .react-tel-input .country-list {
   border-radius: 8px;
 }
+.payment-option{
+  background-color: #fff;
+  color: #545be8;
+}

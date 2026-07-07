@@ -258,12 +258,13 @@ export default function CheckoutPage({ open, close }) {
           <div className="payment-info" style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "5px" }}>
             <label style={{ fontWeight: "bold", fontSize: "14px" }}>Спосіб оплати:</label>
             <select
+            
               value={paymentType}
               onChange={e => setPaymentType(e.target.value)}
               style={{ width: "100%", padding: "10px" }}
             >
-              <option value="Накладений платіж">Накладений платіж (при отриманні)</option>
-              <option value="Оплата на карту">Оплата на карту (реквізити надасть менеджер)</option>
+              <option className="payment-option" value="Накладений платіж">Накладений платіж (при отриманні)</option>
+              <option className="payment-option" value="Оплата на карту">Оплата на карту (реквізити надасть менеджер)</option>
             </select>
           </div>
 

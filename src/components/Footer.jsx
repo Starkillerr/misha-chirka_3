@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import { faTelegram } from "@fortawesome/free-brands-svg-icons";
+import { faViber } from "@fortawesome/free-brands-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
@@ -22,9 +26,16 @@ export const Footer = () => {
     return (
        <footer className="footer">
         <div className="footer_contacts">
-          <a className="footer_number" href="tel:+3806877777">+380 68777 77</a>
-          <a className="footer_number" href="tel:+3806877777">+380 68777 77</a>
+          <p className="footer_description">Нашi контакти</p>
+          <div className="footer_socials">
+          <a className="footer_social" href="tel:+3806877777"><FontAwesomeIcon icon={faTelegram} /></a>
+          <a className="footer_social" href="tel:+3806877777"><FontAwesomeIcon icon={faViber} /></a>
+          </div>
+          
+          <a className="footer_number" href="tel:+3806877777"><FontAwesomeIcon icon={faPhone} /> +380 68777 77</a>
+         
         </div> 
+
         <button className={`toTop back-to-top ${isVisible ? "toTop--visible" : ""}`} onClick={scrollToTop} aria-label="До гори">↑</button>
       </footer> 
     )
